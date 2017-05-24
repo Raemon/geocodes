@@ -12,7 +12,9 @@ class GeocodesController < ApplicationController
 	def create
 		@geocode = Geocode.new(params.require(:geocode).permit(:address))
 
-		url = URI.parse('https://maps.googleapis.com/maps/api/geocode/json?address=' + @geocode.address + '&key=AIzaSyCiDxNCpN9bvKo4mT5oIJP0siemEGqmnLc')
+		key = "AIzaSyCiDxNCpN9bvKo4mT5oIJP0siemEGqmnLc"
+
+		url = URI.parse('https://maps.googleapis.com/maps/api/geocode/json?address=' + @geocode.address + '&key=' + key)
 		req = Net::HTTP::Post.new(url.request_uri)
 		http = Net::HTTP.new(url.host, url.port)
 		http.use_ssl = (url.scheme == "https")
@@ -22,15 +24,7 @@ class GeocodesController < ApplicationController
 		@geocode.longitude = JSON.parse(response.body)['results'][0]['geometry']["location"]["lng"]
 		@geocode.save
 
-		puts "geocode ALL"
-		puts @geocode.latitude
-		puts @geocode.longitude
 		redirect_to "/"
 	end
-
-	private
-	  def geocode_params
-	    
-	  end
 
 end
