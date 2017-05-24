@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+
+* {
+	font-family: "Arial";
+}
+
+table {
+	text-align:left;
+}
+
+td {
+	padding-right:1em;
+}
+
+label {
+	padding-right:.5em;
+}
+input#geocode_address {
+	padding:5px;
+	width:300px;
+}

@@ -1,0 +1,29 @@
+<h3>New Geocode</h3>
+<%= form_for :geocode, url: geocodes_path do |f| %>
+  <p>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+
+<h1>Geocodes</h1>
+ 
+<table>
+  <tr>
+    <th>Address</th>
+    <th>Lat</th>
+    <th>Lon</th>
+  </tr>
+ 
+  <% @geocodes.each do |geocode| %>
+    <tr>
+      <td><%= geocode.address %></td>
+      <td><%= geocode.latitude %></td>
+      <td><%= geocode.longitude %></td>
+    </tr>
+  <% end %>
+</table>
